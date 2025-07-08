@@ -19,8 +19,8 @@ export default function RootLayout({
     <html lang="en">
 
       <head>
-        <title>Levels of Explanation</title>
-        <meta name="description" content="Levels of Explanation" />
+        <title>Causal Research Level Identification</title>
+        <meta name="description" content="Causal Research Level Identification" />
         <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
 
@@ -41,7 +41,7 @@ export default function RootLayout({
             />
           </button>
           <div className="title-container"> {/* Title container class */}
-            <h1 className="title">Levels of Explanation</h1> {/* Title class */}
+            <h1 className="title">Causal Research Level Identification</h1> {/* Title class */}
           </div>
         </header>
 
