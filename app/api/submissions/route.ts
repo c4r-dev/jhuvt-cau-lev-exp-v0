@@ -2,41 +2,35 @@ import { NextRequest, NextResponse } from 'next/server';
 import dbConnect from '../../../lib/mongodb';
 import mongoose from 'mongoose';
 
-// Define the submission schema
-const submissionSchema = new mongoose.Schema({
-  tableAnalysis: {
-    type: String,
-    required: true
-  },
-  graphAnalysis: {
-    type: String,
-    required: true
-  },
-  timestamp: {
-    type: Date,
-    default: Date.now
-  }
-});
-
-// Define the cleanCodeCorrRead schema for userData
-const cleanCodeCorrReadSchema = new mongoose.Schema({
-  sessionId: {
-    type: String,
-    required: true
-  },
-  startTime: {
-    type: Number,
-    required: true
-  },
+// Define the causalLevel schema
+const causalLevelSchema = new mongoose.Schema({
   responses: [{
-    questionIndex: String,
-    questionName: String,
-    codeVersion: String,
-    subQuestion: Number,
-    subQuestionText: String,
-    answer: String,
-    timeSpent: Number,
-    timestamp: Number
+    questionIndex: {
+      type: Number,
+      required: true
+    },
+    selectedAnswer: {
+      type: String,
+      required: true
+    },
+    reasoning: {
+      type: String,
+      required: true
+    },
+    isCorrect: {
+      type: Boolean,
+      required: true
+    },
+    question: {
+      Question: String,
+      Example: String,
+      'Study Description': String,
+      Methodology1: String,
+      Methodology2: String,
+      Results1: String,
+      Results2: String,
+      'Level of Explanation': String
+    }
   }],
   timestamp: {
     type: Date,
@@ -44,9 +38,8 @@ const cleanCodeCorrReadSchema = new mongoose.Schema({
   }
 });
 
-// Create or get the models
-const Submission = mongoose.models.dinstimneg || mongoose.model('dinstimneg', submissionSchema);
-const CleanCodeCorrRead = mongoose.models.cleanCodeCorrRead || mongoose.model('cleanCodeCorrRead', cleanCodeCorrReadSchema);
+// Create or get the model
+const CausalLevel = mongoose.models.causalLevel || mongoose.model('causalLevel', causalLevelSchema);
 
 export async function POST(request: NextRequest) {
   try {
@@ -61,31 +54,17 @@ export async function POST(request: NextRequest) {
     
     const body = await request.json();
     
-    // Check if this is userData submission (for cleanCodeCorrRead)
-    if (body.sessionId && body.responses) {
-      const cleanCodeSubmission = new CleanCodeCorrRead(body);
-      await cleanCodeSubmission.save();
-      return NextResponse.json({ success: true, id: cleanCodeSubmission._id, collection: 'cleanCodeCorrRead' });
+    // Check if this is causalLevel submission
+    if (body.type === 'causalLevel' && body.responses) {
+      const causalSubmission = new CausalLevel({ responses: body.responses });
+      await causalSubmission.save();
+      return NextResponse.json({ success: true, id: causalSubmission._id, collection: 'causalLevel' });
     }
     
-    // Original submission logic for tableAnalysis/graphAnalysis
-    const { tableAnalysis, graphAnalysis } = body;
-    
-    if (!tableAnalysis || !graphAnalysis) {
-      return NextResponse.json(
-        { error: 'Both tableAnalysis and graphAnalysis are required' },
-        { status: 400 }
-      );
-    }
-    
-    const submission = new Submission({
-      tableAnalysis,
-      graphAnalysis
-    });
-    
-    await submission.save();
-    
-    return NextResponse.json({ success: true, id: submission._id });
+    return NextResponse.json(
+      { error: 'Invalid submission type' },
+      { status: 400 }
+    );
   } catch (error) {
     console.error('Error saving submission:', error);
     return NextResponse.json(
@@ -106,14 +85,14 @@ export async function GET() {
     
     await dbConnect();
     
-    // Get the last 30 submissions from cleanCodeCorrRead, sorted by timestamp descending
-    const cleanCodeSubmissions = await CleanCodeCorrRead
+    // Get the last 15 causalLevel submissions, sorted by timestamp descending
+    const causalLevelSubmissions = await CausalLevel
       .find({})
       .sort({ timestamp: -1 })
-      .limit(30)
+      .limit(15)
       .lean();
     
-    return NextResponse.json({ cleanCodeSubmissions });
+    return NextResponse.json({ submissions: causalLevelSubmissions });
   } catch (error) {
     console.error('Error fetching submissions:', error);
     return NextResponse.json(
@@ -122,3 +101,4 @@ export async function GET() {
     );
   }
 }
+

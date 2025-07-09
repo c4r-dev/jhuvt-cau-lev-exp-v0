@@ -24,7 +24,7 @@
 }
 /* */
 * {
-  text-wrap: balance;
+  text-wrap: wrap;
   box-sizing: border-box; /* Add box-sizing */
 }
 /* */
