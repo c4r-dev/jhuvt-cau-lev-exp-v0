@@ -109,7 +109,18 @@ export default function Home() {
               padding: '10px', 
               marginBottom: '10px', 
               cursor: 'pointer',
-              backgroundColor: getBackgroundColor('Correlational')
+              backgroundColor: getBackgroundColor('Correlational'),
+              transition: 'background-color 0.2s ease'
+            }}
+            onMouseEnter={(e) => {
+              if (selectedAnswer !== 'Correlational') {
+                e.currentTarget.style.backgroundColor = '#e0e0e0';
+              }
+            }}
+            onMouseLeave={(e) => {
+              if (selectedAnswer !== 'Correlational') {
+                e.currentTarget.style.backgroundColor = getBackgroundColor('Correlational');
+              }
             }}
             onClick={() => handleAnswerSelect('Correlational')}
           >
@@ -125,7 +136,18 @@ export default function Home() {
               padding: '10px', 
               marginBottom: '10px', 
               cursor: 'pointer',
-              backgroundColor: getBackgroundColor('Predictive')
+              backgroundColor: getBackgroundColor('Predictive'),
+              transition: 'background-color 0.2s ease'
+            }}
+            onMouseEnter={(e) => {
+              if (selectedAnswer !== 'Predictive') {
+                e.currentTarget.style.backgroundColor = '#e0e0e0';
+              }
+            }}
+            onMouseLeave={(e) => {
+              if (selectedAnswer !== 'Predictive') {
+                e.currentTarget.style.backgroundColor = getBackgroundColor('Predictive');
+              }
             }}
             onClick={() => handleAnswerSelect('Predictive')}
           >
@@ -141,7 +163,18 @@ export default function Home() {
               padding: '10px', 
               marginBottom: '10px', 
               cursor: 'pointer',
-              backgroundColor: getBackgroundColor('Causal')
+              backgroundColor: getBackgroundColor('Causal'),
+              transition: 'background-color 0.2s ease'
+            }}
+            onMouseEnter={(e) => {
+              if (selectedAnswer !== 'Causal') {
+                e.currentTarget.style.backgroundColor = '#e0e0e0';
+              }
+            }}
+            onMouseLeave={(e) => {
+              if (selectedAnswer !== 'Causal') {
+                e.currentTarget.style.backgroundColor = getBackgroundColor('Causal');
+              }
             }}
             onClick={() => handleAnswerSelect('Causal')}
           >
@@ -156,7 +189,18 @@ export default function Home() {
               border: '1px solid #ddd', 
               padding: '10px', 
               cursor: 'pointer',
-              backgroundColor: getBackgroundColor('Mechanistic')
+              backgroundColor: getBackgroundColor('Mechanistic'),
+              transition: 'background-color 0.2s ease'
+            }}
+            onMouseEnter={(e) => {
+              if (selectedAnswer !== 'Mechanistic') {
+                e.currentTarget.style.backgroundColor = '#e0e0e0';
+              }
+            }}
+            onMouseLeave={(e) => {
+              if (selectedAnswer !== 'Mechanistic') {
+                e.currentTarget.style.backgroundColor = getBackgroundColor('Mechanistic');
+              }
             }}
             onClick={() => handleAnswerSelect('Mechanistic')}
           >
