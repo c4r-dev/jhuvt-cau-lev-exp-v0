@@ -19,8 +19,8 @@ export default function RootLayout({
     <html lang="en">
 
       <head>
-        <title>Causal Research Level Identification</title>
-        <meta name="description" content="Causal Research Level Identification" />
+        <title>Identify the level of explanation</title>
+        <meta name="description" content="Identify the level of explanation" />
         <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
 
