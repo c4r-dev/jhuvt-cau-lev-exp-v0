@@ -224,7 +224,7 @@ export default function Home() {
           
           {/* Question Tabs */}
           <div style={{ display: 'flex', marginBottom: '20px', flexWrap: 'wrap', gap: '10px', justifyContent: 'center' }}>
-            {questions.map((_, index) => (
+            {questions.map((_: any, index: number) => (
               <button
                 key={index}
                 className="button"
