@@ -37,7 +37,7 @@ export default function Home() {
   const [otherResponses, setOtherResponses] = useState<Submission[]>([]);
   const [activeTab, setActiveTab] = useState(0);
   const [loading, setLoading] = useState(false);
-  const questions: Question[] = data;
+  const questions: Question[] = data as Question[];
 
   // Define the 4 selection options
   const selectionOptions = [
