@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import data from '../public/data.json';
 
 interface Question {
-  Question: string;
+  Question: string | number;
   Example: string;
   'Study Description': string;
   Methodology1: string;
@@ -37,7 +37,7 @@ export default function Home() {
   const [otherResponses, setOtherResponses] = useState<Submission[]>([]);
   const [activeTab, setActiveTab] = useState(0);
   const [loading, setLoading] = useState(false);
-  const questions: Question[] = data;
+  const questions: any = data;
 
   // Define the 4 selection options
   const selectionOptions = [
@@ -224,7 +224,7 @@ export default function Home() {
           
           {/* Question Tabs */}
           <div style={{ display: 'flex', marginBottom: '20px', flexWrap: 'wrap', gap: '10px', justifyContent: 'center' }}>
-            {questions.map((_, index) => (
+            {questions.map((_: any, index: number) => (
               <button
                 key={index}
                 className="button"
