@@ -41,7 +41,7 @@ export default function RootLayout({
             />
           </button>
           <div className="title-container"> {/* Title container class */}
-            <h1 className="title">Causal Research Level Identification</h1> {/* Title class */}
+            <h1 className="title">Identify the level of explanation</h1> {/* Title class */}
           </div>
         </header>
 
