@@ -39,27 +39,22 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const questions: any = data;
 
-  // Define the 4 selection options
+  // Define the 3 selection options based on data.json
   const selectionOptions = [
     {
-      key: 'Correlational',
-      title: 'Correlational',
-      description: 'The study shows a statistical association between two variables but cannot establish causation or prediction.'
+      key: 'Exploratory -  Searches for phenomena or correlations but does not or cannot test whether a relationship may be spurious.',
+      title: 'Exploratory',
+      description: 'Searches for phenomena or correlations but does not or cannot test whether a relationship may be spurious.'
     },
     {
-      key: 'Predictive',
-      title: 'Predictive', 
-      description: 'The study demonstrates that one variable can be used to forecast or predict levels of another variable.'
+      key: 'Inferential - Tests whether an association between two variables is likely to apply beyond the sample at hand.',
+      title: 'Inferential',
+      description: 'Tests whether an association between two variables is likely to apply beyond the sample at hand.'
     },
     {
-      key: 'Causal',
+      key: 'Causal - Tests whether changes in one variable causally contribute to changes in another variable.',
       title: 'Causal',
-      description: 'The study establishes that changes in one variable directly cause changes to another variable.'
-    },
-    {
-      key: 'Mechanistic',
-      title: 'Mechanistic',
-      description: 'The study demonstrates causation and characterizes the type of relationship between variables (linear, curvilinear, etc.).'
+      description: 'Tests whether changes in one variable causally contribute to changes in another variable.'
     }
   ];
 
