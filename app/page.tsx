@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import data from '../public/data.json';
 
 interface Question {
-  Question: string;
+  Question: string | number;
   Example: string;
   'Study Description': string;
   Methodology1: string;
