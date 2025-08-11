@@ -72,7 +72,7 @@ export default function Home() {
     return shuffled;
   };
 
-  const shuffledOptions = getShuffledOptions(currentQuestionIndex);
+  const shuffledOptions = selectionOptions;
 
   const handleNext = () => {
     if (selectedAnswer) {
